@@ -27,24 +27,46 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background:
-          conic-gradient(#f06, rgba(0,0,0,.5)),
-          conic-gradient(silver 25%, #eee 0 50%,
-          silver 0 75%, #eee 0);
-        background-size: auto, 1em 1em;
       }
 
       .mv .item {
-        width: 100%;
-        height: 100%;
+        width: 20vw;
+        height: 20vw;
+        border-radius: 50%;
         overflow: hidden;
-        background-position: center center;
+
+        -webkit-mask-image: radial-gradient(
+          transparent 0%,
+          transparent 30%,
+          #000 30%,
+          #000 100%
+        );
+      }
+
+      .only {
+        display: block;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+      }
+      .only:after {
+        /* The number after slash '\' is in hexadecimal format. */
+        /*content: "\2192";*/
 
       }
     </style>
 
   </head>
   <body>
+
+    <!--<p class="only">-->
+      <!--SONICJAM-->
+    <!--</p>-->
 
     <div class="mv">
       <div class="item js-tg"></div>

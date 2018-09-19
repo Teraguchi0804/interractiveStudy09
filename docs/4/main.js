@@ -2,86 +2,68 @@
 // 動かす要素
 tg = $('.js-tg');
 
-// item = $('.mv);
-
-updateCnt = 0;
-
-// マウス座標
-mouse = {
-  x:0,
-  y:0
+// アニメーションで使う
+param = {
+  rate:0,
+  cnt:0,
+  rotate:0,
+  offset:0 // 隠し味的な
 };
 
 // 初期設定
 init();
 function init() {
 
-  $(window).on('mousemove', _eMouseMove).on('mousedown', _eMouseDown).on('mouseup', _eMouseUp);
+  // TweenMax.to(param, 2, {
+  //   rate:1,
+  //   repeat:-1,
+  //   yoyo:false,
+  //   ease:Power3.easeInOut,
+  //   onRepeat: function() {
+  //     param.cnt++
+  //   }
+  // });
 
   update();
-
 }
-
-// ----------------------------------------
-// イベント マウス動いた
-// ----------------------------------------
-function _eMouseMove(e) {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-}
-
-
-// ----------------------------------------
-// イベント マウス押した
-// ----------------------------------------
-function _eMouseDown(e) {
-}
-
-
-// ----------------------------------------
-// イベント マウス離した
-// ----------------------------------------
-function _eMouseUp(e) {
-}
-
 
 // 毎フレーム実行
 window.requestAnimationFrame(update);
 function update() {
 
-  var sw = window.innerWidth;
-  var sh = window.innerHeight;
-
-  // conic-gradient()作成
-  var grad = 'repeating-conic-gradient(';
-
-  // 線の色
-  var color = '#d00fff';
-
-  var per1 = map(mouse.x, 1, 25, 0, sw) * 0.4;
-  var per2 = per1 + map(mouse.y, 1, 25, 0, sh);
-
-  grad += 'transparent 0,';
-  grad += 'transparent ' + per1 + '%,';
-  // grad += color + ' ' + per1 + '%,';
-  // grad += color + ' ' + per2 + '%';
-	grad += 'hsl(270, 100%, 50%)' + ' ' + per1 + '%,';
-  grad += 'hsl(177, 100%, 50%)' + ' ' + per2 + '%';
-  grad += ')';
-
-  var sizeW = map(mouse.x, 50, sw, 0, sw);
-  var sizeH = map(mouse.y, 25, sh, 0, sh);
-
-  tg.css({
-    backgroundImage:grad,
-    backgroundSize: sizeW + 'px ' + sizeH + 'px'
-  });
-
-	// item.css({
-	// 	backgroundSize: sizeW + 'px ' + sizeH + 'px'
-	// });
-
-  updateCnt++;
+  // var per = (param.rate * 100) + '%'
+  // var color1;
+  // var color2;
+  // var bgColor;
+  // if(param.cnt % 2 == 0) {
+  //   color1 = chroma.mix(0x000000, 0xffffff, param.rate).css();
+  //   color2 = 'transparent';
+  //   bgColor = chroma.mix(0xffffff, 0x000000, param.rate).css();
+  // } else {
+  //   color1 = 'transparent';
+  //   color2 = chroma.mix(0xffffff, 0x000000, param.rate).css();
+  //   bgColor = chroma.mix(0x000000, 0xffffff, param.rate).css();
+  // }
+  //
+  // param.rotate = param.rate * 360 + param.offset;
+  // param.offset += 1;
+  //
+  // // conic-gradient()部分
+  // var grad = 'conic-gradient(';
+  // grad += 'from ' + param.rotate + 'deg, ';
+  // grad += color1 + ' 0,';
+  // grad += color1 + ' ' + per + ',';
+  // grad += color2 + ' ' + per + ',';
+  // grad += color2 + '';
+  // grad += ')';
+  //
+  // tg.css({
+  //   backgroundImage:grad
+  // });
+  //
+  // $('body').css({
+  //   backgroundColor:bgColor
+  // });
 
   window.requestAnimationFrame(update);
 }
@@ -176,26 +158,4 @@ function map(val, toMin, toMax, fromMin, fromMax) {
   }
   p = (toMax - toMin) / (fromMax - fromMin);
   return ((val - fromMin) * p) + toMin;
-}
-
-// 配列内のパラメータを比較してソート
-// -----------------------------------
-// @arr  : 配列
-// @para : パラメーター名
-// @desc : 降順かどうか(boolean)
-// -----------------------------------
-function sort(arr, para, desc) {
-
-  if(desc) {
-    arr.sort(function(a, b) {
-        return b[para] - a[para];
-      }
-    )
-  } else {
-    arr.sort(function(a, b) {
-        return a[para] - b[para];
-      }
-    )
-  }
-
 }
