@@ -2,7 +2,7 @@
 // 動かす要素
 tg = $('.js-tg');
 
-// item = $('.mv);
+item = $('.mv'');
 
 updateCnt = 0;
 
@@ -80,6 +80,10 @@ function update() {
 	// item.css({
 	// 	backgroundSize: sizeW + 'px ' + sizeH + 'px'
 	// });
+
+	item.css({
+		backgroundSize: sizeW + 'px ' + sizeH + 'px'
+	});
 
   updateCnt++;
 
